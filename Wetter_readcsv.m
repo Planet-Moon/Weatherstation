@@ -111,18 +111,6 @@ ylabel("%")
 
 linkaxes([sub1,sub2,sub3,sub4],"x");
 
-test.UT = 27898;
-test.UP = 23843;
-test.oss = 0;
-[T,P] = calc_pressure(test.UT,test.UP,test.oss);
-
-[T,P] = calc_pressure(Wetterlog.bmp_temperature,Wetterlog.UP,3);
-[P] = calc_pressure_T_UP(Wetterlog.bmp_temperature,Wetterlog.UP,3);
-T = Wetterlog.bmp_temperature;
-
-%[P,~] = Mittelwertfilter(P.',floor(length(P)/16));
-P = P.';
-
 figure
 sub1 = subplot(2,1,1);
 hold on
