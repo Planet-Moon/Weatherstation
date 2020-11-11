@@ -86,7 +86,7 @@ title("Lightintensity")
 ylabel("%")
 
 linkaxes([sub1,sub2,sub3,sub4,sub5,sub6],"x");
-
+%%
 figure
 sub1 = subplot(4,1,1);
 plot(Datum,Wetterlog.RelativeHumidity)
@@ -132,7 +132,7 @@ linkaxes([sub1,sub2,sub3,sub4],"x");
 
 %[P,~] = Mittelwertfilter(P.',floor(length(P)/16));
 % % P = P.';
-
+%%
 figure
 sub1 = subplot(2,1,1);
 hold on
@@ -389,7 +389,7 @@ values_today.min(end) = [];
 
 
 day_classification = strings(loop_counter,1);
-tmp = cell2mat(values_today.mean(:,1))
+tmp = cell2mat(values_today.mean(:,1));
 tmp_week = week(values_today.date);
 tmp_month = month(values_today.date);
 reference_line_week = zeros(loop_counter,1);
@@ -454,6 +454,7 @@ table_ML_lastWeek.Classification = day_classification;
 % viewmodel
 if exist("trainedModel")
     view(trainedModel.ClassificationTree,'Mode','graph');
+    save trainedModel
 else
     load("trainedModel.mat")
 end
@@ -483,3 +484,4 @@ predict_table.Month = month(Datum(end));
 predict_table.Week = week(Datum(end));
 
 prediction = trainedModel.predictFcn(predict_table)
+sound(sin(1:3000));
