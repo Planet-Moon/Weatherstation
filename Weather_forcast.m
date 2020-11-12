@@ -460,6 +460,11 @@ else
 end
 %%
 predict_table = table();
+
+predict_table.Data = mean_lastweek.week(end,1);
+predict_table.Week = week(Datum(end));
+predict_table.Month = month(Datum(end));
+
 predict_table.LW_meanRH = data_predict.mean(1);
 predict_table.LW_meanT = data_predict.mean(2);
 predict_table.LW_meanAP = data_predict.mean(3);
