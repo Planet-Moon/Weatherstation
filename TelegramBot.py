@@ -1,5 +1,6 @@
 import sys
 import os
+import configparser
 import time
 import random
 import datetime
@@ -108,7 +109,11 @@ def handle(msg):
         bot.sendMessage(chat_id, MyWeatherData.get_Data("Second"))
 
 
-bot = telepot.Bot('1451976899:AAGnmNFUjbK8lGQ_Ud9KZlXMcwgHAexm5Fk')
+config = configparser.RawConfigParser()
+configFilePath = "telegrambot.cfg"
+readConfig = config.read(configFilePath)
+bot_token = config.get("telegrambot","token")
+bot = telepot.Bot(bot_token)
 botInfo = bot.getMe()
 
 MessageLoop(bot, handle).run_as_thread()
